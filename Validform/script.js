@@ -3,6 +3,7 @@
 let elementForm = document.getElementById('form');
 elementForm.addEventListener('submit', formSubmit);
 
+
 let elementMan = document.getElementById('man');
 elementMan.addEventListener('blur', () => manValid(false));
 
@@ -23,6 +24,7 @@ function manValid(focusOnErr) {
    return errCount;
 }
 
+
 let elementName = document.getElementById('name');
 elementName.addEventListener('blur', () => nameValid(false));
 
@@ -41,6 +43,7 @@ function nameValid(focusOnErr) {
    }
    return errCount;
 }
+
 
 let elementUrl = document.getElementById('url');
 elementUrl.addEventListener('blur', () => urlValid(false));
@@ -67,6 +70,7 @@ function urlValid(focusOnErr) {
    return errCount;
 }
 
+
 let elementDate = document.getElementById('date');
 elementDate.addEventListener('blur', () => dateValid(false));
 
@@ -86,6 +90,7 @@ function dateValid(focusOnErr) {
    return errCount;
 }
 
+
 let elementVisitor = document.getElementById('visitor');
 elementVisitor.addEventListener('blur', () => visitorValid(false));
 
@@ -104,6 +109,7 @@ function visitorValid(focusOnErr) {
    }
    return errCount;
 }
+
 
 let elementMail = document.getElementById('mail');
 elementMail.addEventListener('blur', () => mailValid(false));
@@ -130,23 +136,34 @@ function mailValid(focusOnErr) {
    return errCount;
 }
 
+
 let elementSelect = document.getElementById('select');
 elementSelect.addEventListener('change', () => selectValid(false));
+//console.log(elementSelect);
 
 function selectValid(focusOnErr) {
    let errCount = 0;
-   let selectElem = document.getElementById('check');
-   if (selectElem.checked === false) {
-      document.getElementById('checkErr').innerHTML = 'Заполните поле';
-      errCount++;
-      if (focusOnErr) {
-         checkElem.focus();
+   let optionElem = elementSelect.getElementsByTagName('option');
+   //console.log(optionElem);
+   for (let i = 1; i < optionElem.length; i++) {
+      let op = optionElem[i].selected;
+      //console.log(r);
+      if (op === false) {
+         document.getElementById('selectErr').innerHTML = 'Заполните поле';
+         errCount++;
+         if (focusOnErr) {
+            elementSelect.focus();
+         }
+      } else {
+         document.getElementById('selectErr').innerHTML = '';
+         errCount = 0;
+         break;
       }
-   } else {
-      document.getElementById('checkErr').innerHTML = '';
    }
+   //alert(errCount);
    return errCount;
 }
+
 
 let elementRadio = document.getElementById('div');
 elementRadio.addEventListener('change', () => radioValid(false));
@@ -176,7 +193,6 @@ function radioValid(focusOnErr) {
 }
 
 
-
 let elementCheck = document.getElementById('check');
 elementCheck.addEventListener('change', () => checkValid(false));
 
@@ -194,6 +210,7 @@ function checkValid(focusOnErr) {
    }
    return errCount;
 }
+
 
 let elementText = document.getElementById('text');
 elementText.addEventListener('blur', () => textValid(false));
@@ -224,6 +241,7 @@ function formSubmit(eo) {
    errCount += visitorValid(!errCount);
    errCount += mailValid(!errCount);
    errCount += checkValid(!errCount);
+   errCount += selectValid(!errCount);
    errCount += radioValid(!errCount);
    errCount += textValid(!errCount);
    if (errCount) {
