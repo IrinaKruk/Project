@@ -28,10 +28,13 @@
          <option value="2">здоровье</option>
          <option value="3">домашний уют</option>
       </select><br>
-      <label>Размещение:</label>
-      <input type="radio" id="radio" name="answer" value="1"> бесплатное
-      <input type="radio" id="radio" name="answer" value="2"> платное
-      <input type="radio" id="radio" name="answer" value="3"> VIP <br>
+      <div id="div">
+         <label>Размещение:</label>
+         <label><input type="radio" id="radio" name="answer" value="1" /> бесплатное </label>
+         <label><input type="radio" id="radio" name="answer" value="2" /> платное </label>
+         <label><input type="radio" id="radio" name="answer" value="3" /> VIP </label><span id="radioErr"
+            style="color:red"></span>
+      </div>
       <label>Разрешить отзывы:</label><input type="checkbox" name="allow" id="check"><span id="checkErr"
          style="color:red"></span><br>
       Описание сайта:<br>

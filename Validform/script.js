@@ -14,7 +14,6 @@ function manValid(focusOnErr) {
    if (manValue === '') {
       manElemErr.innerHTML = 'Заполните поле';
       errCount++;
-      console.log(errCount);
       if (focusOnErr) {
          manElem.focus();
       }
@@ -56,6 +55,12 @@ function urlValid(focusOnErr) {
       if (focusOnErr) {
          urlElem.focus();
       }
+   } else if (!(urlValue.includes('.'))) {
+      document.getElementById('urlErr').innerHTML = 'Заполните поле';
+      errCount++;
+      if (focusOnErr) {
+         urlElem.focus();
+      }
    } else {
       document.getElementById('urlErr').innerHTML = '';
    }
@@ -87,7 +92,6 @@ elementVisitor.addEventListener('blur', () => visitorValid(false));
 function visitorValid(focusOnErr) {
    let errCount = 0;
    let visitorValue = document.getElementById('visitor').value;
-   console.log(typeof visitorValue);
    let visitorElem = document.getElementById('visitor');
    if (visitorValue === '' || isNaN(visitorValue)) {
       document.getElementById('visitorErr').innerHTML = 'Заполните поле';
@@ -108,7 +112,13 @@ function mailValid(focusOnErr) {
    let errCount = 0;
    let mailValue = document.getElementById('mail').value;
    let mailElem = document.getElementById('mail');
-   if ((mailValue === '') || !(mailValue.includes('@'))) { /*!(mailValue.includes('.')) - не могу понять как добавить и это условие, и можно ли вообще...*/
+   if ((mailValue === '') || !(mailValue.includes('@'))) {
+      document.getElementById('mailErr').innerHTML = 'Заполните поле';
+      errCount++;
+      if (focusOnErr) {
+         mailElem.focus();
+      }
+   } else if (!(mailValue.includes('.'))) {
       document.getElementById('mailErr').innerHTML = 'Заполните поле';
       errCount++;
       if (focusOnErr) {
@@ -120,16 +130,15 @@ function mailValid(focusOnErr) {
    return errCount;
 }
 
-/*
-let elementRadio = document.getElementById('radio');
-elementRadio.addEventListener('blur', () => radioValid(false));
+let elementRadio = document.getElementById('div');
+elementRadio.addEventListener('change', radioValid);
 
 function radioValid(focusOnErr) {
    let errCount = 0;
    let radioElem = document.getElementById('radio');
-
-   console.log(radioElem);
-   if () {
+   console.log(focusOnErr.target);
+   let radio = focusOnErr.target;
+   if (radio == undefined) {
       document.getElementById('radioErr').innerHTML = 'Заполните поле';
       errCount++;
       if (focusOnErr) {
@@ -140,10 +149,10 @@ function radioValid(focusOnErr) {
    }
    return errCount;
 }
-*/
+
 
 let elementCheck = document.getElementById('check');
-elementCheck.addEventListener('blur', () => checkValid(false));
+elementCheck.addEventListener('change', () => checkValid(false));
 
 function checkValid(focusOnErr) {
    let errCount = 0;
@@ -189,7 +198,7 @@ function formSubmit(eo) {
    errCount += visitorValid(!errCount);
    errCount += mailValid(!errCount);
    errCount += checkValid(!errCount);
-   //errCount += radioValid(!errCount);
+   errCount += radioValid(!errCount);
    errCount += textValid(!errCount);
    if (errCount) {
       eo.preventDefault();
