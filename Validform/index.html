@@ -23,17 +23,16 @@
       <label>E-mail для связи<input type="text" id="mail" name="article"></label><span id="mailErr"
          style="color:red"></span><br>
       <label>Рубрика каталога:</label>
-      <select name="cap">
-         <option value="1">бытовая техника</option>
-         <option value="2">здоровье</option>
-         <option value="3">домашний уют</option>
-      </select><br>
+      <select name="cap" id="select">
+         <option value="1" id="option">бытовая техника</option>
+         <option value="2" id="option">здоровье</option>
+         <option value="3" id="option">домашний уют</option>
+      </select><span id="selectErr" style="color:red"></span><br>
       <div id="div">
          <label>Размещение:</label>
-         <label><input type="radio" id="radio" name="answer" value="1" /> бесплатное </label>
-         <label><input type="radio" id="radio" name="answer" value="2" /> платное </label>
-         <label><input type="radio" id="radio" name="answer" value="3" /> VIP </label><span id="radioErr"
-            style="color:red"></span>
+         <label><input type="radio" name="radio" /> бесплатное </label>
+         <label><input type="radio" name="radio" /> платное </label>
+         <label><input type="radio" name="radio" /> VIP </label><span id="radioErr" style="color:red"></span>
       </div>
       <label>Разрешить отзывы:</label><input type="checkbox" name="allow" id="check"><span id="checkErr"
          style="color:red"></span><br>

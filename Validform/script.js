@@ -130,25 +130,51 @@ function mailValid(focusOnErr) {
    return errCount;
 }
 
-let elementRadio = document.getElementById('div');
-elementRadio.addEventListener('change', radioValid);
+let elementSelect = document.getElementById('select');
+elementSelect.addEventListener('change', () => selectValid(false));
 
-function radioValid(focusOnErr) {
+function selectValid(focusOnErr) {
    let errCount = 0;
-   let radioElem = document.getElementById('radio');
-   console.log(focusOnErr.target);
-   let radio = focusOnErr.target;
-   if (radio == undefined) {
-      document.getElementById('radioErr').innerHTML = 'Заполните поле';
+   let selectElem = document.getElementById('check');
+   if (selectElem.checked === false) {
+      document.getElementById('checkErr').innerHTML = 'Заполните поле';
       errCount++;
       if (focusOnErr) {
-         radioElem.focus();
+         checkElem.focus();
       }
    } else {
-      document.getElementById('radioErr').innerHTML = '';
+      document.getElementById('checkErr').innerHTML = '';
    }
    return errCount;
 }
+
+let elementRadio = document.getElementById('div');
+elementRadio.addEventListener('change', () => radioValid(false));
+//console.log(elementRadio);
+
+function radioValid(focusOnErr) {
+   let errCount = 0;
+   let radioElem = elementRadio.getElementsByTagName('input');
+   //console.log(radioElem);
+   for (let i = 0; i < radioElem.length; i++) {
+      let r = radioElem[i].checked;
+      //console.log(r);
+      if (r === false) {
+         document.getElementById('radioErr').innerHTML = 'Заполните поле';
+         errCount++;
+         if (focusOnErr) {
+            elementRadio.focus();
+         }
+      } else {
+         document.getElementById('radioErr').innerHTML = '';
+         errCount = 0;
+         break;
+      }
+   }
+   //alert(errCount);
+   return errCount;
+}
+
 
 
 let elementCheck = document.getElementById('check');
