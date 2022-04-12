@@ -58,7 +58,7 @@ function closing(event) {
 
       let ang = (angle[i]) / 180 * Math.PI;
       //console.log(ang);
-      let radius = diameterYellow / 2 - 20; // радиус циферблата. Отнимаю 20, чтобы зеленые кружки были внутри циферблата
+      let radius = diameterYellow / 2; // радиус циферблата
 
       let greenCircleCenterX = clockFaceCenterX + radius * Math.sin(ang); // находим центр зеленого круга
       let greenCircleCenterY = clockFaceCenterY - radius * Math.cos(ang); // находим центр зеленого круга
