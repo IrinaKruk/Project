@@ -82,8 +82,8 @@ function closing(event) {
    let hourРand = document.createElement('div'); // создаем div для часовой стрелки
    let hourРandWidth = radiusYellow / 15; // задаём ширину часовой стрелки
    hourРand.style.height = radiusYellow / 1.5 + 'px'; // задаём высоту div для часовой стрелки
-   hourРand.style.width = hourРandWidth + 'px';// задаём ширину div для часовой стрелки
-   hourРand.style.transformOrigin = 'bottom' + '' + 'center'
+   hourРand.style.width = hourРandWidth + 'px'; // задаём ширину div для часовой стрелки
+   hourРand.style.transformOrigin = 50 + '%' + ' ' + 100 + '%'; // задаём координаты точки, относительно которой будет происходить трансформация стрелки
    hourРand.style.position = 'absolute'; // задаём position для зеленый кругов
    hourРand.style.display = 'inline-block';
    hourРand.style.backgroundColor = 'black'; // задаём цвет 
@@ -96,7 +96,7 @@ function closing(event) {
    let minuteРandWidth = radiusYellow / 25; // задаём ширину минутной стрелки
    minuteРand.style.height = radiusYellow / 1.2 + 'px'; // задаём высоту div для часовой стрелки
    minuteРand.style.width = minuteРandWidth + 'px';// задаём ширину div для часовой стрелки
-   minuteРand.style.transformOrigin = 'bottom' + '' + 'center'
+   minuteРand.style.transformOrigin = 50 + '%' + ' ' + 100 + '%'; // задаём координаты точки, относительно которой будет происходить трансформация стрелки
    minuteРand.style.position = 'absolute'; // задаём position для зеленый кругов
    minuteРand.style.display = 'inline-block';
    minuteРand.style.backgroundColor = 'pink'; // задаём цвет 
@@ -109,8 +109,8 @@ function closing(event) {
    let secondРand = document.createElement('div'); // создаем div для часовой стрелки
    let secondРandWidth = radiusYellow / 45; // задаём ширину секундной стрелки
    secondРand.style.height = radiusYellow / 1.1 + 'px'; // задаём высоту div для часовой стрелки
-   secondРand.style.width = secondРandWidth + 'px';// задаём ширину div для часовой стрелки
-   secondРand.style.transformOrigin = 'bottom' + '' + 'center'
+   secondРand.style.width = secondРandWidth + 'px'; // задаём ширину div для часовой стрелки
+   secondРand.style.transformOrigin = 50 + '%' + ' ' + 100 + '%'; // задаём координаты точки, относительно которой будет происходить трансформация стрелки
    secondРand.style.position = 'absolute'; // задаём position для зеленый кругов
    secondРand.style.display = 'inline-block';
    secondРand.style.backgroundColor = 'blue'; // задаём цвет 
@@ -162,6 +162,10 @@ function closing(event) {
       time.style.fontSize = radiusYellow / 5 + 'px'; // задаём размер текста для часов
       time.style.left = clockFaceCenterX - timeWidth + 'px'; // задаём left для часов
       time.style.top = clockFaceCenterY - radiusYellow / 3 + 'px'; // задаём top для часов
+
+      hourРand.style.transform = 'rotate' + '(' + hours * 30 + 'deg' + ')';
+      minuteРand.style.transform = 'rotate' + '(' + minutes * 6 + 'deg' + ')';
+      secondРand.style.transform = 'rotate' + '(' + seconds * 6 + 'deg' + ')';
       //console.log(time);
    }
    setInterval(clock, 1000);
