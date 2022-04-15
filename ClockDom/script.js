@@ -39,8 +39,7 @@ function closing(event) {
       let greenCircle = document.createElement('div'); // создаем div для зеленых кружков
       let diameterGreen = diameterYellow / 8; // задаём диаметр для зеленых кружков
       //console.log(diameterGreen);
-      let greenText = document.createElement('span'); // создаем div для зеленых кружков
-
+      let greenText = document.createElement('div'); // создаем div для зеленых кружков
       greenText.innerHTML = i;
       greenCircle.appendChild(greenText); //вставляем зеленые кружки для времени на страницу
 
@@ -48,16 +47,13 @@ function closing(event) {
       greenCircle.style.width = diameterGreen + 'px';// задаём ширину div для зеленых кружков
       //console.log(greenCircle.style.height);
       greenCircle.style.position = 'absolute'; // задаём position для зеленый кругов
-      greenCircle.style.display = 'inline-block';
       greenCircle.style.textAlign = 'center'; // выравниваем по центру
       greenCircle.style.backgroundColor = 'green'; // задаём цвет 
       greenCircle.style.borderRadius = border + '%'; //скругляем углы
-      greenCircle.style.fontWeight = 'bold';
-
-
-      console.log(greenCircle);
-
-      //greenCircle.innerHTML = i; // записываем нумерацию циферблата
+      greenCircle.style.fontSize = diameterGreen / 2 + 'px'; //задаём размер текста внутри зеленых кругов
+      greenCircle.style.fontWeight = 'bold'; // делаем текст жирным
+      greenCircle.style.lineHeight = diameterGreen + 'px'; //выравниваем текст по середине
+      //console.log(greenCircle);
 
       let angle = (i * 30) / 180 * Math.PI;
       //console.log(ang);
@@ -71,8 +67,8 @@ function closing(event) {
       //console.log(greenCircleCenterY);
 
 
-      greenCircle.style.left = Math.round(greenCircleCenterX - diameterGreen / 2) + 'px';
-      greenCircle.style.top = Math.round(greenCircleCenterY - diameterGreen / 2) + 'px';
+      greenCircle.style.left = Math.round(greenCircleCenterX - diameterGreen / 2) + 'px'; //задаём свойство left для зеленых кругов
+      greenCircle.style.top = Math.round(greenCircleCenterY - diameterGreen / 2) + 'px'; //задаём свойство top для зеленых кругов
 
 
       document.body.appendChild(clockFace); //вставляем циферблат на страницу
@@ -85,12 +81,12 @@ function closing(event) {
    hourРand.style.width = hourРandWidth + 'px'; // задаём ширину div для часовой стрелки
    hourРand.style.transformOrigin = 50 + '%' + ' ' + 100 + '%'; // задаём координаты точки, относительно которой будет происходить трансформация стрелки
    hourРand.style.position = 'absolute'; // задаём position для зеленый кругов
-   hourРand.style.display = 'inline-block';
    hourРand.style.backgroundColor = 'black'; // задаём цвет 
-   clockFace.appendChild(hourРand); //вставляем зеленые кружки для времени на страницу
+   hourРand.style.borderRadius = 5 + 'px'; //скругляем углы
+   clockFace.appendChild(hourРand); //вставляем часовую стрелку 
 
-   hourРand.style.left = clockFaceCenterX - hourРandWidth / 2 + 'px';
-   hourРand.style.bottom = clockFaceCenterY + 'px';
+   hourРand.style.left = clockFaceCenterX - hourРandWidth / 2 + 'px'; //задаём свойство left для часовой стрелки
+   hourРand.style.bottom = clockFaceCenterY + 'px'; //задаём свойство bottom для часовой стрелки
 
    let minuteРand = document.createElement('div'); // создаем div для часовой стрелки
    let minuteРandWidth = radiusYellow / 25; // задаём ширину минутной стрелки
@@ -98,12 +94,12 @@ function closing(event) {
    minuteРand.style.width = minuteРandWidth + 'px';// задаём ширину div для часовой стрелки
    minuteРand.style.transformOrigin = 50 + '%' + ' ' + 100 + '%'; // задаём координаты точки, относительно которой будет происходить трансформация стрелки
    minuteРand.style.position = 'absolute'; // задаём position для зеленый кругов
-   minuteРand.style.display = 'inline-block';
    minuteРand.style.backgroundColor = 'pink'; // задаём цвет 
-   clockFace.appendChild(minuteРand); //вставляем зеленые кружки для времени на страницу
+   minuteРand.style.borderRadius = 5 + 'px'; //скругляем углы
+   clockFace.appendChild(minuteРand); //вставляем минутную стрелку
 
-   minuteРand.style.left = clockFaceCenterX - minuteРandWidth / 2 + 'px';
-   minuteРand.style.bottom = clockFaceCenterY + 'px';
+   minuteРand.style.left = clockFaceCenterX - minuteРandWidth / 2 + 'px'; //задаём свойство left для минутной стрелки
+   minuteРand.style.bottom = clockFaceCenterY + 'px'; //задаём свойство bottom для минутной стрелки
 
 
    let secondРand = document.createElement('div'); // создаем div для часовой стрелки
@@ -112,33 +108,12 @@ function closing(event) {
    secondРand.style.width = secondРandWidth + 'px'; // задаём ширину div для часовой стрелки
    secondРand.style.transformOrigin = 50 + '%' + ' ' + 100 + '%'; // задаём координаты точки, относительно которой будет происходить трансформация стрелки
    secondРand.style.position = 'absolute'; // задаём position для зеленый кругов
-   secondРand.style.display = 'inline-block';
    secondРand.style.backgroundColor = 'blue'; // задаём цвет 
-   clockFace.appendChild(secondРand); //вставляем зеленые кружки для времени на страницу
+   secondРand.style.borderRadius = 5 + 'px'; //скругляем углы
+   clockFace.appendChild(secondРand); //вставляем секундную стрелку
 
-   secondРand.style.left = clockFaceCenterX - secondРandWidth / 2 + 'px';
-   secondРand.style.bottom = clockFaceCenterY + 'px';
-
-
-   const time = document.createElement('div'); // создаем div для часов
-   let date = new Date();
-   let hours = date.getHours(); // задаём часы
-   let minutes = date.getMinutes(); // задаём минуты
-   let seconds = date.getSeconds(); // задаём секунды
-
-   if (hours < 10) hours = "0" + hours;
-   if (minutes < 10) minutes = "0" + minutes;
-   if (seconds < 10) seconds = "0" + seconds;
-
-   time.textContent = hours + ":" + minutes + ":" + seconds; // выводим в div часы
-   time.style.position = 'absolute'; // задаём position для часов
-
-   let timeWidth = radiusYellow / 3; // задаём position для часов
-   time.style.textAlign = 'center'; // выравниваем текст внутри div по центру
-   time.style.fontSize = radiusYellow / 5 + 'px'; // задаём размер текста для часов
-   time.style.left = clockFaceCenterX - timeWidth + 'px'; // задаём left для часов
-   time.style.bottom = clockFaceCenterY + radiusYellow / 4 + 'px'; // задаём bottom для часов
-
+   secondРand.style.left = clockFaceCenterX - secondРandWidth / 2 + 'px'; //задаём свойство left для секундной стрелки
+   secondРand.style.bottom = clockFaceCenterY + 'px'; //задаём свойство bottom для секундной стрелки
 
    function clock() {
 
@@ -157,18 +132,19 @@ function closing(event) {
       time.style.position = 'absolute';
       time.style.zIndex = '1000'; // задаём position для часов
 
-      let timeWidth = radiusYellow / 3; // задаём position для часов
+      let timeWidth = radiusYellow / 3;
       time.style.textAlign = 'center'; // выравниваем текст внутри div по центру
       time.style.fontSize = radiusYellow / 5 + 'px'; // задаём размер текста для часов
       time.style.left = clockFaceCenterX - timeWidth + 'px'; // задаём left для часов
-      time.style.top = clockFaceCenterY - radiusYellow / 3 + 'px'; // задаём top для часов
+      time.style.top = clockFaceCenterY - timeWidth + 'px'; // задаём top для часов
+      let hourRotate = hours * 30 + minutes / 2;
 
-      hourРand.style.transform = 'rotate' + '(' + hours * 30 + 'deg' + ')';
-      minuteРand.style.transform = 'rotate' + '(' + minutes * 6 + 'deg' + ')';
-      secondРand.style.transform = 'rotate' + '(' + seconds * 6 + 'deg' + ')';
-      //console.log(time);
+      hourРand.style.transform = 'rotate' + '(' + hourRotate + 'deg' + ')'; //поворачиваем часовую стрелку
+      minuteРand.style.transform = 'rotate' + '(' + minutes * 6 + 'deg' + ')'; //поворачиваем минутную стрелку 
+      secondРand.style.transform = 'rotate' + '(' + seconds * 6 + 'deg' + ')'; //поворачиваем секундную стрелку
+      console.log(hours + ":" + minutes + ":" + seconds);
    }
-   setInterval(clock, 1000);
+   setInterval(clock, 1000); //
    clock();
 
 }
