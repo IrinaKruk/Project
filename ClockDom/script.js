@@ -137,14 +137,15 @@ function closing(event) {
       time.style.fontSize = radiusYellow / 5 + 'px'; // задаём размер текста для часов
       time.style.left = clockFaceCenterX - timeWidth + 'px'; // задаём left для часов
       time.style.top = clockFaceCenterY - timeWidth + 'px'; // задаём top для часов
-      let hourRotate = hours * 30 + minutes / 2;
+      let hourRotate = 360 / 12 * hours + 360 / 12 / 60 * minutes;
 
       hourРand.style.transform = 'rotate' + '(' + hourRotate + 'deg' + ')'; //поворачиваем часовую стрелку
-      minuteРand.style.transform = 'rotate' + '(' + minutes * 6 + 'deg' + ')'; //поворачиваем минутную стрелку 
-      secondРand.style.transform = 'rotate' + '(' + seconds * 6 + 'deg' + ')'; //поворачиваем секундную стрелку
+      minuteРand.style.transform = 'rotate' + '(' + 360 / 60 * minutes + 'deg' + ')'; //поворачиваем минутную стрелку 
+      secondРand.style.transform = 'rotate' + '(' + 360 / 60 * seconds + 'deg' + ')'; //поворачиваем секундную стрелку
       console.log(hours + ":" + minutes + ":" + seconds);
+      setTimeout(clock, 1020 - date.getMilliseconds());
    }
-   setInterval(clock, 1000); //
+
    clock();
 
 }
