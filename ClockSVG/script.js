@@ -14,98 +14,88 @@ function closing(event) {
 
    let divClose = document.getElementById('div'); // получаем все div с ID "div"
    divClose.removeChild(d); // удаляем поле ввода 
-   let self = this;
-   self.hidden = true; // добавляем кнопке свойство hidden (скрываем её)
+
+   divClose.hidden = true; // добавляем кнопке свойство hidden (скрываем её)
 
    let clockFaceSvg = document.getElementById('yellow'); // получаем svg с ID "yellow"
    clockFaceSvg.setAttribute("height", diameterYellow); // задаём высоту svg для циферблата
    clockFaceSvg.setAttribute("width", diameterYellow);// задаём ширину svg для циферблата
    clockFaceSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
 
-   let clockFaceSvgCircle = document.getElementById('circleyellow'); // создаем circle для циферблата
+   let clockFaceSvgCircle = document.getElementById('circleyellow'); //получаем circle с ID "circleyellow"
    clockFaceSvgCircle.setAttribute("cx", radiusYellow); // задаём центр циферблата
    clockFaceSvgCircle.setAttribute("cy", radiusYellow); // задаём центр циферблата
    clockFaceSvgCircle.setAttribute("r", radiusYellow); // задаём радиус круга
-   clockFaceSvgCircle.setAttribute("fill", "yellow"); // задаём цвет циферблата
+   clockFaceSvgCircle.setAttribute("fill", 'yellow'); // задаём цвет циферблата
 
    for (let i = 1; i <= 12; i++) {
 
-      let diameterGreen = diameterYellow / 8; // задаём диаметр для зеленых кружков
-      let radiusGreen = diameterGreen / 2; // радиус зеленого круга
-      let greenSvg = document.createElement('circle'); // создаем svg для зеленых кружков
+      let diameterGreen = diameterYellow / 12; // задаём диаметр для зеленых кружков
+
+      let greenSvg = document.getElementById('circlegreen'); //получаем circle с ID "circlegreen"
       //console.log(greenSvg);
-
-      greenSvg.setAttribute("height", diameterGreen); // задаём высоту svg для циферблата
-      greenSvg.setAttribute("width", diameterGreen);// задаём ширину svg для циферблата
-      greenSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg"); // задаём цвет циферблата
-
-      greenSvg.setAttribute("r", diameterGreen); // задаём радиус круга
-      greenSvg.setAttribute("fill", "green"); // задаём цвет циферблата
-
-
-      let greenText = document.createElement('text'); // создаем div для зеленых кружков
-      greenText.innerHTML = i;
-      greenSvg.appendChild(greenText); //вставляем зеленые кружки для времени на страницу
-
 
       let angle = (i * 30) / 180 * Math.PI;
 
-      let greenCircleCenterX = radiusYellow + (radiusYellow - radiusGreen) * Math.sin(angle); // находим центр зеленого круга
-      let greenCircleCenterY = radiusYellow - (radiusYellow - radiusGreen) * Math.cos(angle); // находим центр зеленого круга
+      let greenCircleCenterX = radiusYellow + (radiusYellow - diameterGreen) * Math.sin(angle); // находим центр зеленого круга
+      let greenCircleCenterY = radiusYellow - (radiusYellow - diameterGreen) * Math.cos(angle); // находим центр зеленого круга
 
-      greenSvg.setAttribute("cx", Math.round(greenCircleCenterX - diameterGreen / 2)); //задаём свойство left для зеленых кругов
-      greenSvg.setAttribute("cy", Math.round(greenCircleCenterY - diameterGreen / 2)); //задаём свойство top для зеленых кругов
+      greenSvg.setAttribute("cx", Math.round(greenCircleCenterX)); //задаём центр зеленых кругов
+      greenSvg.setAttribute("cy", Math.round(greenCircleCenterY)); //задаём центр зеленых кругов
 
 
-      //document.body.appendChild(clockFace); //вставляем циферблат на страницу
-      //clockFace.appendChild(clockFaceSvg); //вставляем svg на страницу
-      //clockFaceSvg.appendChild(clockFaceSvgCircle); //вставляем круг на страницу
-      //clockFace.appendChild(green); //вставляем зеленые кружки для времени на страницу
-      //green.appendChild(greenSvg); //вставляем svg на страницу
-      clockFaceSvg.appendChild(greenSvg); //вставляем круг на страницу
-      console.log(clockFaceSvg);
+      greenSvg.setAttribute("r", diameterGreen); // задаём радиус зеленых кругов
+      greenSvg.setAttribute("fill", 'green'); // задаём цвет зеленых кругов
+
+
+      let greenText = document.getElementById('textgreen'); //получаем text с ID "textgreen"
+      greenText.setAttribute("x", Math.round(greenCircleCenterX)); //задаём координаты текста
+      greenText.setAttribute("y", Math.round(greenCircleCenterY)); //задаём координаты текста
+      greenText.setAttribute("text-anchor", 'middle'); //выравниваем текст
+      greenText.innerHTML = i;
+      greenText.style.fontSize = Math.round(diameterGreen) + 'px'; //задаём размер текста
+      greenText.style.fontWeight = 'bold'; //делаем текст жирным
+      clockFaceSvg.append(greenSvg); //вставляем зеленые круги на страницу
+      clockFaceSvg.append(greenText); //вставляем текст на страницу
+      //console.log(clockFaceSvg);
    }
 
-   /*
-   let hourРand = document.createElement('div'); // создаем div для часовой стрелки
+   let hourРand = document.getElementById('hour'); // получаем line с ID "hour"
    let hourРandWidth = radiusYellow / 15; // задаём ширину часовой стрелки
-   hourРand.style.height = radiusYellow / 1.5 + 'px'; // задаём высоту div для часовой стрелки
-   hourРand.style.width = hourРandWidth + 'px'; // задаём ширину div для часовой стрелки
-   hourРand.style.transformOrigin = 50 + '%' + ' ' + 100 + '%'; // задаём координаты точки, относительно которой будет происходить трансформация стрелки
-   hourРand.style.position = 'absolute'; // задаём position для зеленый кругов
-   hourРand.style.backgroundColor = 'black'; // задаём цвет 
-   hourРand.style.borderRadius = 5 + 'px'; //скругляем углы
-   clockFace.appendChild(hourРand); //вставляем часовую стрелку 
+   hourРand.setAttribute("x1", radiusYellow); //задаём координаты первой точки
+   hourРand.setAttribute("y1", radiusYellow); //задаём координаты первой точки
+   hourРand.setAttribute("x2", radiusYellow); //задаём координаты второй точки
+   hourРand.setAttribute("y2", radiusYellow / 2); //задаём координаты второй точки
+   hourРand.setAttribute("stroke", 'black'); //задаём цвет часовой стрелки
+   hourРand.setAttribute("stroke-width", Math.round(hourРandWidth)); //задаём ширину часовой стрелки
+   hourРand.setAttribute("stroke-linecap", 'round'); //задаём скругление часовой стрелки
+   hourРand.style.transformOrigin = 50 + '%' + ' ' + 50 + '%';
+   clockFaceSvg.append(hourРand); //вставляем часовую стрелку 
 
-   hourРand.style.left = clockFaceCenterX - hourРandWidth / 2 + 'px'; //задаём свойство left для часовой стрелки
-   hourРand.style.bottom = clockFaceCenterY + 'px'; //задаём свойство bottom для часовой стрелки
-
-   let minuteРand = document.createElement('div'); // создаем div для часовой стрелки
+   let minuteРand = document.getElementById('minute'); // получаем line с ID "minute"
    let minuteРandWidth = radiusYellow / 25; // задаём ширину минутной стрелки
-   minuteРand.style.height = radiusYellow / 1.2 + 'px'; // задаём высоту div для часовой стрелки
-   minuteРand.style.width = minuteРandWidth + 'px';// задаём ширину div для часовой стрелки
-   minuteРand.style.transformOrigin = 50 + '%' + ' ' + 100 + '%'; // задаём координаты точки, относительно которой будет происходить трансформация стрелки
-   minuteРand.style.position = 'absolute'; // задаём position для зеленый кругов
-   minuteРand.style.backgroundColor = 'pink'; // задаём цвет 
-   minuteРand.style.borderRadius = 5 + 'px'; //скругляем углы
-   clockFace.appendChild(minuteРand); //вставляем минутную стрелку
+   minuteРand.setAttribute("x1", radiusYellow); //задаём координаты первой точки
+   minuteРand.setAttribute("y1", radiusYellow); //задаём координаты первой точки
+   minuteРand.setAttribute("x2", radiusYellow); //задаём координаты второй точки
+   minuteРand.setAttribute("y2", radiusYellow / 3); //задаём координаты второй точки
+   minuteРand.setAttribute("stroke", 'pink'); //задаём цвет минутной стрелки
+   minuteРand.setAttribute("stroke-width", Math.round(minuteРandWidth)); //задаём ширину минутной стрелки
+   minuteРand.setAttribute("stroke-linecap", 'round'); //задаём скругление минутной стрелки
+   minuteРand.style.transformOrigin = 50 + '%' + ' ' + 50 + '%';
+   clockFaceSvg.append(minuteРand); //вставляем минутную стрелку 
 
-   minuteРand.style.left = clockFaceCenterX - minuteРandWidth / 2 + 'px'; //задаём свойство left для минутной стрелки
-   minuteРand.style.bottom = clockFaceCenterY + 'px'; //задаём свойство bottom для минутной стрелки
+   let secondРand = document.getElementById('second'); // получаем line с ID "second"
+   let secondРandWidth = radiusYellow / 45; // задаём ширину минутной стрелки
+   secondРand.setAttribute("x1", radiusYellow); //задаём координаты первой точки
+   secondРand.setAttribute("y1", radiusYellow); //задаём координаты первой точки
+   secondРand.setAttribute("x2", radiusYellow); //задаём координаты второй точки
+   secondРand.setAttribute("y2", radiusYellow / 5); //задаём координаты второй точки
+   secondРand.setAttribute("stroke", 'blue'); //задаём цвет минутной стрелки
+   secondРand.setAttribute("stroke-width", Math.round(secondРandWidth)); //задаём ширину минутной стрелки
+   secondРand.setAttribute("stroke-linecap", 'round'); //задаём скругление минутной стрелки
+   secondРand.style.transformOrigin = 50 + '%' + ' ' + 50 + '%';
+   clockFaceSvg.append(secondРand); //вставляем минутную стрелку 
 
-
-   let secondРand = document.createElement('div'); // создаем div для часовой стрелки
-   let secondРandWidth = radiusYellow / 45; // задаём ширину секундной стрелки
-   secondРand.style.height = radiusYellow / 1.1 + 'px'; // задаём высоту div для часовой стрелки
-   secondРand.style.width = secondРandWidth + 'px'; // задаём ширину div для часовой стрелки
-   secondРand.style.transformOrigin = 50 + '%' + ' ' + 100 + '%'; // задаём координаты точки, относительно которой будет происходить трансформация стрелки
-   secondРand.style.position = 'absolute'; // задаём position для зеленый кругов
-   secondРand.style.backgroundColor = 'blue'; // задаём цвет 
-   secondРand.style.borderRadius = 5 + 'px'; //скругляем углы
-   clockFace.appendChild(secondРand); //вставляем секундную стрелку
-
-   secondРand.style.left = clockFaceCenterX - secondРandWidth / 2 + 'px'; //задаём свойство left для секундной стрелки
-   secondРand.style.bottom = clockFaceCenterY + 'px'; //задаём свойство bottom для секундной стрелки
 
    function clock() {
 
@@ -139,5 +129,5 @@ function closing(event) {
    }
 
    clock();
-*/
+
 }
