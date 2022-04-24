@@ -50,7 +50,7 @@ function closing(event) {
 
       let greenText = document.getElementById('textgreen'); //получаем text с ID "textgreen"
       greenText.setAttribute("x", Math.round(greenCircleCenterX)); //задаём координаты текста
-      greenText.setAttribute("y", Math.round(greenCircleCenterY)); //задаём координаты текста
+      greenText.setAttribute("y", Math.round(greenCircleCenterY + diameterGreen / 3)); //задаём координаты текста
       greenText.setAttribute("text-anchor", 'middle'); //выравниваем текст
       greenText.innerHTML = i;
       greenText.style.fontSize = Math.round(diameterGreen) + 'px'; //задаём размер текста
