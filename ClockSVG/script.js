@@ -32,7 +32,7 @@ function closing(event) {
 
       let diameterGreen = diameterYellow / 12; // задаём диаметр для зеленых кружков
 
-      let greenSvg = document.getElementById('circlegreen'); //получаем circle с ID "circlegreen"
+      let greenSvg = document.createElement('circle'); //создаём circle для зеленых кругов
       //console.log(greenSvg);
 
       let angle = (i * 30) / 180 * Math.PI;
@@ -44,11 +44,11 @@ function closing(event) {
       greenSvg.setAttribute("cy", Math.round(greenCircleCenterY)); //задаём центр зеленых кругов
 
 
-      greenSvg.setAttribute("r", diameterGreen); // задаём радиус зеленых кругов
+      greenSvg.setAttribute("r", Math.round(diameterGreen)); // задаём радиус зеленых кругов
       greenSvg.setAttribute("fill", 'green'); // задаём цвет зеленых кругов
 
 
-      let greenText = document.getElementById('textgreen'); //получаем text с ID "textgreen"
+      let greenText = document.createElement('text'); //создаём text для зеленых кругов
       greenText.setAttribute("x", Math.round(greenCircleCenterX)); //задаём координаты текста
       greenText.setAttribute("y", Math.round(greenCircleCenterY + diameterGreen / 3)); //задаём координаты текста
       greenText.setAttribute("text-anchor", 'middle'); //выравниваем текст
@@ -57,7 +57,6 @@ function closing(event) {
       greenText.style.fontWeight = 'bold'; //делаем текст жирным
       clockFaceSvg.append(greenSvg); //вставляем зеленые круги на страницу
       clockFaceSvg.append(greenText); //вставляем текст на страницу
-      //console.log(clockFaceSvg);
    }
 
    let hourРand = document.getElementById('hour'); // получаем line с ID "hour"
