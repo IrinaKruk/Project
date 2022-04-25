@@ -17,22 +17,24 @@ function closing(event) {
 
    divClose.hidden = true; // добавляем кнопке свойство hidden (скрываем её)
 
-   let clockFaceSvg = document.getElementById('yellow'); // получаем svg с ID "yellow"
+   let clockFaceSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); // получаем svg с ID "yellow"
    clockFaceSvg.setAttribute("height", diameterYellow); // задаём высоту svg для циферблата
    clockFaceSvg.setAttribute("width", diameterYellow);// задаём ширину svg для циферблата
    clockFaceSvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+   document.body.appendChild(clockFaceSvg);
 
-   let clockFaceSvgCircle = document.getElementById('circleyellow'); //получаем circle с ID "circleyellow"
+   let clockFaceSvgCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); //получаем circle с ID "circleyellow"
    clockFaceSvgCircle.setAttribute("cx", radiusYellow); // задаём центр циферблата
    clockFaceSvgCircle.setAttribute("cy", radiusYellow); // задаём центр циферблата
    clockFaceSvgCircle.setAttribute("r", radiusYellow); // задаём радиус круга
    clockFaceSvgCircle.setAttribute("fill", 'yellow'); // задаём цвет циферблата
+   clockFaceSvg.appendChild(clockFaceSvgCircle);
 
    for (let i = 1; i <= 12; i++) {
 
       let diameterGreen = diameterYellow / 12; // задаём диаметр для зеленых кружков
 
-      let greenSvg = document.createElement('circle'); //создаём circle для зеленых кругов
+      let greenSvg = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); //создаём circle для зеленых кругов
       //console.log(greenSvg);
 
       let angle = (i * 30) / 180 * Math.PI;
@@ -48,18 +50,18 @@ function closing(event) {
       greenSvg.setAttribute("fill", 'green'); // задаём цвет зеленых кругов
 
 
-      let greenText = document.createElement('text'); //создаём text для зеленых кругов
+      let greenText = document.createElementNS('http://www.w3.org/2000/svg', 'text'); //создаём text для зеленых кругов
       greenText.setAttribute("x", Math.round(greenCircleCenterX)); //задаём координаты текста
       greenText.setAttribute("y", Math.round(greenCircleCenterY + diameterGreen / 3)); //задаём координаты текста
       greenText.setAttribute("text-anchor", 'middle'); //выравниваем текст
       greenText.innerHTML = i;
       greenText.style.fontSize = Math.round(diameterGreen) + 'px'; //задаём размер текста
       greenText.style.fontWeight = 'bold'; //делаем текст жирным
-      clockFaceSvg.append(greenSvg); //вставляем зеленые круги на страницу
-      clockFaceSvg.append(greenText); //вставляем текст на страницу
+      clockFaceSvg.appendChild(greenSvg); //вставляем зеленые круги на страницу
+      clockFaceSvg.appendChild(greenText); //вставляем текст на страницу
    }
 
-   let hourРand = document.getElementById('hour'); // получаем line с ID "hour"
+   let hourРand = document.createElementNS('http://www.w3.org/2000/svg', 'line'); // создаем line для "hour"
    let hourРandWidth = radiusYellow / 15; // задаём ширину часовой стрелки
    hourРand.setAttribute("x1", radiusYellow); //задаём координаты первой точки
    hourРand.setAttribute("y1", radiusYellow); //задаём координаты первой точки
@@ -69,9 +71,9 @@ function closing(event) {
    hourРand.setAttribute("stroke-width", Math.round(hourРandWidth)); //задаём ширину часовой стрелки
    hourРand.setAttribute("stroke-linecap", 'round'); //задаём скругление часовой стрелки
    hourРand.style.transformOrigin = 50 + '%' + ' ' + 50 + '%';
-   clockFaceSvg.append(hourРand); //вставляем часовую стрелку 
+   clockFaceSvg.appendChild(hourРand); //вставляем часовую стрелку 
 
-   let minuteРand = document.getElementById('minute'); // получаем line с ID "minute"
+   let minuteРand = document.createElementNS('http://www.w3.org/2000/svg', 'line'); //создаем line для "minute"
    let minuteРandWidth = radiusYellow / 25; // задаём ширину минутной стрелки
    minuteРand.setAttribute("x1", radiusYellow); //задаём координаты первой точки
    minuteРand.setAttribute("y1", radiusYellow); //задаём координаты первой точки
@@ -81,9 +83,9 @@ function closing(event) {
    minuteРand.setAttribute("stroke-width", Math.round(minuteРandWidth)); //задаём ширину минутной стрелки
    minuteРand.setAttribute("stroke-linecap", 'round'); //задаём скругление минутной стрелки
    minuteРand.style.transformOrigin = 50 + '%' + ' ' + 50 + '%';
-   clockFaceSvg.append(minuteРand); //вставляем минутную стрелку 
+   clockFaceSvg.appendChild(minuteРand); //вставляем минутную стрелку 
 
-   let secondРand = document.getElementById('second'); // получаем line с ID "second"
+   let secondРand = document.createElementNS('http://www.w3.org/2000/svg', 'line'); //создаем line для "second"
    let secondРandWidth = radiusYellow / 45; // задаём ширину минутной стрелки
    secondРand.setAttribute("x1", radiusYellow); //задаём координаты первой точки
    secondРand.setAttribute("y1", radiusYellow); //задаём координаты первой точки
@@ -93,7 +95,7 @@ function closing(event) {
    secondРand.setAttribute("stroke-width", Math.round(secondРandWidth)); //задаём ширину минутной стрелки
    secondРand.setAttribute("stroke-linecap", 'round'); //задаём скругление минутной стрелки
    secondРand.style.transformOrigin = 50 + '%' + ' ' + 50 + '%';
-   clockFaceSvg.append(secondРand); //вставляем минутную стрелку 
+   clockFaceSvg.appendChild(secondРand); //вставляем секундную стрелку 
 
 
    function clock() {
