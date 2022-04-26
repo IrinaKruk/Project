@@ -17,77 +17,75 @@ function closing(event) {
 
    divClose.hidden = true; // добавляем кнопке свойство hidden (скрываем её)
 
+   function clock() {
 
-   let cvs = document.getElementById('yellow'); // получаем canvas с ID "yellow"
-   cvs.setAttribute("height", diameterYellow); // задаём высоту 
-   cvs.setAttribute("width", diameterYellow); // задаём ширину для кнопки
-   let context = cvs.getContext('2d');
-   let startAngle = 0; //задаём начальный угол
-   let endAngle = Math.PI * 2; // End point on circle
-   let anticlockwise = false; // clockwise or anticlockwise
+      let cvs = document.getElementById('yellow'); // получаем canvas с ID "yellow"
+      cvs.setAttribute("height", diameterYellow); // задаём высоту 
+      cvs.setAttribute("width", diameterYellow); // задаём ширину для кнопки
+      let context = cvs.getContext('2d');
+      let startAngle = 0; //задаём начальный угол
+      let endAngle = Math.PI * 2; // End point on circle
+      let anticlockwise = false; // clockwise or anticlockwise
 
-   context.arc(radiusYellow, radiusYellow, radiusYellow, startAngle, endAngle, anticlockwise);
-   context.strokeStyle = 'yellow';
-   context.fillStyle = 'yellow';
-   context.stroke();
-   context.fill();
-
-   for (let i = 0; i <= 12; i++) {
-
-      let diameterGreen = diameterYellow / 12; // задаём диаметр для зеленых кружков
-      let radiusGreen = diameterYellow / 12; // задаём радиус для зеленых кружков
-
-      let angle = (i * 30) / 180 * Math.PI;
-
-      context.beginPath();
-      let x = radiusYellow + (radiusYellow - diameterGreen) * Math.sin(angle); //задаём центр зеленого круга
-      let y = radiusYellow - (radiusYellow - diameterGreen) * Math.cos(angle); //задаём центр зеленого круга
-      let radius = radiusGreen; // задаём radius
-
-      context.arc(x, y, radius, startAngle, endAngle, anticlockwise);
-      context.strokeStyle = 'green';
-      context.fillStyle = 'green';
+      context.arc(radiusYellow, radiusYellow, radiusYellow, startAngle, endAngle, anticlockwise);
+      context.strokeStyle = 'yellow';
+      context.fillStyle = 'yellow';
       context.stroke();
       context.fill();
 
+      for (let i = 0; i <= 12; i++) {
+
+         let diameterGreen = diameterYellow / 12; // задаём диаметр для зеленых кружков
+         let radiusGreen = diameterYellow / 12; // задаём радиус для зеленых кружков
+
+         let angle = (i * 30) / 180 * Math.PI;
+
+         context.beginPath();
+         let x = radiusYellow + (radiusYellow - diameterGreen) * Math.sin(angle); //задаём центр зеленого круга
+         let y = radiusYellow - (radiusYellow - diameterGreen) * Math.cos(angle); //задаём центр зеленого круга
+         let radius = radiusGreen; // задаём radius
+
+         context.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+         context.strokeStyle = 'green';
+         context.fillStyle = 'green';
+         context.stroke();
+         context.fill();
+
+         context.beginPath();
+         context.fillStyle = 'black';
+         context.fillText(i, x, y + diameterGreen / 3);
+         let number = Math.round(diameterGreen);
+         context.font = 'normal' + ' ' + number + 'px' + ' ' + 'Arial';
+         context.textAlign = 'center';
+      }
+
+      /*//часовая стрелка
       context.beginPath();
-      context.fillStyle = 'black';
-      context.fillText(i, x, y + diameterGreen / 3);
-      let number = Math.round(diameterGreen);
-      context.font = 'normal' + ' ' + number + 'px' + ' ' + 'Arial';
-      context.textAlign = 'center';
-
-   }
-
-   /*//часовая стрелка
-   context.beginPath();
-   context.strokeStyle = 'black';
-   context.lineWidth = radiusYellow / 15;
-   context.lineCap = 'round';
-   context.moveTo(radiusYellow, radiusYellow);
-   context.lineTo(radiusYellow, radiusYellow / 2);
-   context.stroke();
-
-   //минутная стрелка
-   context.beginPath();
-   context.strokeStyle = 'pink';
-   context.lineWidth = radiusYellow / 25;
-   context.lineCap = 'round';
-   context.moveTo(radiusYellow, radiusYellow);
-   context.lineTo(radiusYellow, radiusYellow / 3);
-   context.stroke();
-
-   //секундная стрелка
-   context.beginPath();
-   context.strokeStyle = 'blue';
-   context.lineWidth = radiusYellow / 45;
-   context.lineCap = 'round';
-   context.moveTo(radiusYellow, radiusYellow);
-   context.lineTo(radiusYellow, radiusYellow / 5);
-   context.stroke();
-*/
-
-   function clock() {
+      context.strokeStyle = 'black';
+      context.lineWidth = radiusYellow / 15;
+      context.lineCap = 'round';
+      context.moveTo(radiusYellow, radiusYellow);
+      context.lineTo(radiusYellow, radiusYellow / 2);
+      context.stroke();
+   
+      //минутная стрелка
+      context.beginPath();
+      context.strokeStyle = 'pink';
+      context.lineWidth = radiusYellow / 25;
+      context.lineCap = 'round';
+      context.moveTo(radiusYellow, radiusYellow);
+      context.lineTo(radiusYellow, radiusYellow / 3);
+      context.stroke();
+   
+      //секундная стрелка
+      context.beginPath();
+      context.strokeStyle = 'blue';
+      context.lineWidth = radiusYellow / 45;
+      context.lineCap = 'round';
+      context.moveTo(radiusYellow, radiusYellow);
+      context.lineTo(radiusYellow, radiusYellow / 5);
+      context.stroke();
+   */
 
       const time = document.getElementById('clock'); // создаем div для часов
       let date = new Date();
@@ -109,13 +107,12 @@ function closing(event) {
       time.style.fontSize = radiusYellow / 5 + 'px'; // задаём размер текста для часов
       time.style.left = radiusYellow - timeWidth + 'px'; // задаём left для часов
       time.style.top = radiusYellow - timeWidth + 'px'; // задаём top для часов
-      let hourRotate = 360 / 12 * hours + 360 / 12 / 60 * minutes;
+      let hourRotate = (360 / 12 * hours + 360 / 12 / 60 * minutes) / 180 * Math.PI;
 
       //часовая стрелка
 
-      let x1 = radiusYellow + (radiusYellow - radiusYellow / 2) * Math.cos(hourRotate);
-      let y1 = radiusYellow - (radiusYellow - radiusYellow / 2) * Math.sin(hourRotate);
-
+      let x1 = radiusYellow + radiusYellow / 2 * Math.sin(hourRotate);
+      let y1 = radiusYellow - radiusYellow / 2 * Math.cos(hourRotate);
 
       context.beginPath();
       context.strokeStyle = 'black';
@@ -127,8 +124,8 @@ function closing(event) {
 
       //минутная стрелка
 
-      let x2 = radiusYellow + (radiusYellow - radiusYellow / 3) * Math.cos(360 / 60 * minutes);
-      let y2 = radiusYellow - (radiusYellow - radiusYellow / 3) * Math.sin(360 / 60 * minutes);
+      let x2 = radiusYellow + (radiusYellow - radiusYellow / 3) * Math.sin((360 / 60 * minutes) / 180 * Math.PI);
+      let y2 = radiusYellow - (radiusYellow - radiusYellow / 3) * Math.cos((360 / 60 * minutes) / 180 * Math.PI);
 
       context.beginPath();
       context.strokeStyle = 'pink';
@@ -140,8 +137,8 @@ function closing(event) {
 
       //секундная стрелка
 
-      let x3 = radiusYellow + (radiusYellow - radiusYellow / 5) * Math.cos(360 / 60 * seconds);
-      let y3 = radiusYellow - (radiusYellow - radiusYellow / 5) * Math.sin(360 / 60 * seconds);
+      let x3 = radiusYellow + (radiusYellow - radiusYellow / 5) * Math.sin((360 / 60 * seconds) / 180 * Math.PI);
+      let y3 = radiusYellow - (radiusYellow - radiusYellow / 5) * Math.cos((360 / 60 * seconds) / 180 * Math.PI);
 
       context.beginPath();
 
