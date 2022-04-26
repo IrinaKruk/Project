@@ -27,11 +27,11 @@ function closing(event) {
       let endAngle = Math.PI * 2; // End point on circle
       let anticlockwise = false; // clockwise or anticlockwise
 
-      context.arc(radiusYellow, radiusYellow, radiusYellow, startAngle, endAngle, anticlockwise);
-      context.strokeStyle = 'yellow';
-      context.fillStyle = 'yellow';
-      context.stroke();
-      context.fill();
+      context.arc(radiusYellow, radiusYellow, radiusYellow, startAngle, endAngle, anticlockwise); // рисуем окружность для циферблата
+      context.strokeStyle = 'yellow'; //задаём цвет обводки
+      context.fillStyle = 'yellow'; //задаём цвет заливки
+      context.stroke(); //обводим контур
+      context.fill(); //заполняем цветом циферблат
 
       for (let i = 0; i <= 12; i++) {
 
@@ -40,52 +40,24 @@ function closing(event) {
 
          let angle = (i * 30) / 180 * Math.PI;
 
-         context.beginPath();
+         context.beginPath(); //начинаем рисовать зеленый круг
          let x = radiusYellow + (radiusYellow - diameterGreen) * Math.sin(angle); //задаём центр зеленого круга
          let y = radiusYellow - (radiusYellow - diameterGreen) * Math.cos(angle); //задаём центр зеленого круга
          let radius = radiusGreen; // задаём radius
 
-         context.arc(x, y, radius, startAngle, endAngle, anticlockwise);
-         context.strokeStyle = 'green';
-         context.fillStyle = 'green';
-         context.stroke();
-         context.fill();
+         context.arc(x, y, radius, startAngle, endAngle, anticlockwise); // рисуем окружность для зеленых кругов
+         context.strokeStyle = 'green'; //задаём цвет обводки
+         context.fillStyle = 'green'; //задаём цвет заливки
+         context.stroke(); //обводим контур
+         context.fill(); //заполняем цветом зеленые круги
 
-         context.beginPath();
-         context.fillStyle = 'black';
-         context.fillText(i, x, y + diameterGreen / 3);
+         context.beginPath(); //начинаем рисовать текст
+         context.fillStyle = 'black'; //задаём цвет заливки
+         context.fillText(i, x, y + diameterGreen / 3); //выводим текст, заполненный заливкой
          let number = Math.round(diameterGreen);
-         context.font = 'normal' + ' ' + number + 'px' + ' ' + 'Arial';
-         context.textAlign = 'center';
+         context.font = 'normal' + ' ' + number + 'px' + ' ' + 'Arial'; //устанавливаем свойства текста
+         context.textAlign = 'center'; //выравниваем текст по центру
       }
-
-      /*//часовая стрелка
-      context.beginPath();
-      context.strokeStyle = 'black';
-      context.lineWidth = radiusYellow / 15;
-      context.lineCap = 'round';
-      context.moveTo(radiusYellow, radiusYellow);
-      context.lineTo(radiusYellow, radiusYellow / 2);
-      context.stroke();
-   
-      //минутная стрелка
-      context.beginPath();
-      context.strokeStyle = 'pink';
-      context.lineWidth = radiusYellow / 25;
-      context.lineCap = 'round';
-      context.moveTo(radiusYellow, radiusYellow);
-      context.lineTo(radiusYellow, radiusYellow / 3);
-      context.stroke();
-   
-      //секундная стрелка
-      context.beginPath();
-      context.strokeStyle = 'blue';
-      context.lineWidth = radiusYellow / 45;
-      context.lineCap = 'round';
-      context.moveTo(radiusYellow, radiusYellow);
-      context.lineTo(radiusYellow, radiusYellow / 5);
-      context.stroke();
-   */
 
       const time = document.getElementById('clock'); // создаем div для часов
       let date = new Date();
@@ -114,46 +86,44 @@ function closing(event) {
       let x1 = radiusYellow + radiusYellow / 2 * Math.sin(hourRotate);
       let y1 = radiusYellow - radiusYellow / 2 * Math.cos(hourRotate);
 
-      context.beginPath();
-      context.strokeStyle = 'black';
-      context.lineWidth = radiusYellow / 15;
-      context.lineCap = 'round';
-      context.moveTo(radiusYellow, radiusYellow);
-      context.lineTo(x1, y1);
-      context.stroke();
+      context.beginPath(); //начинаем рисовать часовую стрелку
+      context.strokeStyle = 'black'; //задаём цвет обводки
+      context.lineWidth = radiusYellow / 15; //устанавливаем толщину линии обводки
+      context.lineCap = 'round'; //устанавливаем типа пера обводки
+      context.moveTo(radiusYellow, radiusYellow); //перемещаем перо в указанную точку
+      context.lineTo(x1, y1); //рисуем линию в указанную точку
+      context.stroke();//обводим контур
 
       //минутная стрелка
 
       let x2 = radiusYellow + (radiusYellow - radiusYellow / 3) * Math.sin((360 / 60 * minutes) / 180 * Math.PI);
       let y2 = radiusYellow - (radiusYellow - radiusYellow / 3) * Math.cos((360 / 60 * minutes) / 180 * Math.PI);
 
-      context.beginPath();
-      context.strokeStyle = 'pink';
-      context.lineWidth = radiusYellow / 25;
-      context.lineCap = 'round';
-      context.moveTo(radiusYellow, radiusYellow);
-      context.lineTo(x2, y2);
-      context.stroke();
+      context.beginPath(); //начинаем рисовать минутную стрелку
+      context.strokeStyle = 'pink'; //задаём цвет обводки
+      context.lineWidth = radiusYellow / 25; //устанавливаем толщину линии обводки
+      context.lineCap = 'round'; //устанавливаем типа пера обводки
+      context.moveTo(radiusYellow, radiusYellow); //перемещаем перо в указанную точку
+      context.lineTo(x2, y2); //рисуем линию в указанную точку
+      context.stroke(); //обводим контур
 
       //секундная стрелка
 
       let x3 = radiusYellow + (radiusYellow - radiusYellow / 5) * Math.sin((360 / 60 * seconds) / 180 * Math.PI);
       let y3 = radiusYellow - (radiusYellow - radiusYellow / 5) * Math.cos((360 / 60 * seconds) / 180 * Math.PI);
 
-      context.beginPath();
-
-      context.strokeStyle = 'blue';
-      context.lineWidth = radiusYellow / 45;
-      context.lineCap = 'round';
-      context.moveTo(radiusYellow, radiusYellow);
-      context.lineTo(x3, y3);
-      context.stroke();
+      context.beginPath(); //начинаем рисовать секундную стрелку
+      context.strokeStyle = 'blue'; //задаём цвет обводки
+      context.lineWidth = radiusYellow / 45; //устанавливаем толщину линии обводки
+      context.lineCap = 'round'; //устанавливаем типа пера обводки
+      context.moveTo(radiusYellow, radiusYellow); //перемещаем перо в указанную точку
+      context.lineTo(x3, y3); //рисуем линию в указанную точку
+      context.stroke(); //обводим контур
 
       console.log(hours + ":" + minutes + ":" + seconds);
       setTimeout(clock, 1020 - date.getMilliseconds());
    }
 
    clock();
-
 
 }
