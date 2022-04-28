@@ -214,17 +214,17 @@ ball.update();
 document.addEventListener('keydown', function (e) { // следим за нажатием клавиш
 
    if (e.key === 'ArrowUp') { //если нажата клавиша вверх
-      rightRacket.speedY -= 3;// двигаем рокетки вверх
+      rightRacket.speedY = -3;// двигаем рокетки вверх
    }
    if (e.key === 'Shift') { //если нажата клавиша вверх
-      leftRacket.speedY -= 3;// двигаем рокетки вверх
+      leftRacket.speedY = -3;// двигаем рокетки вверх
    }
 
    if (e.key === 'ArrowDown') { //если нажата клавиша вниз
-      rightRacket.speedY += 3; // двигаем рокетки вниз
+      rightRacket.speedY = 3; // двигаем рокетки вниз
    }
    if (e.key === 'Control') { //если нажата клавиша вниз
-      leftRacket.speedY += 3; // двигаем рокетки вниз
+      leftRacket.speedY = 3; // двигаем рокетки вниз
    }
 });
 
