@@ -229,8 +229,10 @@ document.addEventListener('keydown', function (e) { // следим за наж�
 });
 
 document.addEventListener('keyup', function (e) { // следим за отжатием клавиш
-   if (e.key === 'ArrowUp' || e.key === 'ArrowDown' || e.key === 'Shift' || e.key === 'Control') { //если это клавиши вверх и вниз
+   if (e.key === 'ArrowUp' || e.key === 'ArrowDown') { //если это клавиши вверх и вниз
       leftRacket.speedY = 0; // останавливаем  рокетку
+   }
+   if (e.key === 'Shift' || e.key === 'Control') { //если это клавиши вверх и вниз
       rightRacket.speedY = 0; // останавливаем  рокетку
    }
 });
