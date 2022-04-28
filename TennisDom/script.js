@@ -161,16 +161,15 @@ function tick() {
       ball.posX + ball.width > rightRacket.posX &&
       ball.posY < rightRacket.posY + rightRacket.height &&
       ball.posY + ball.height > rightRacket.posY) {
-      ball.speedY = -ball.speedY;
+      ball.speedX = -ball.speedX;
       ball.posX = rightRacket.posX - ball.width;
    }
    // проверка на касание мячиком левой рокетки
 
-   if (ball.posX > leftRacket.posX + leftRacket.width &&
-      ball.posX + ball.width > leftRacket.posX &&
+   if (ball.posX < leftRacket.posX + leftRacket.width &&
       ball.posY < leftRacket.posY + leftRacket.height &&
-      ball.posY + ball.height > leftRacket.posY) {
-      ball.speedY = -ball.speedY;
+      ball.posY > leftRacket.posY) {
+      ball.speedX = -ball.speedX;
       ball.posX = leftRacket.posX + leftRacket.width;
    }
 
@@ -224,7 +223,7 @@ document.addEventListener('keydown', function (e) { // следим за наж�
    if (e.key === 'ArrowDown') { //если нажата клавиша вниз
       rightRacket.speedY += 3; // двигаем рокетки вниз
    }
-   if (e.key === 'ArrowDown' || e.key === 'Control') { //если нажата клавиша вниз
+   if (e.key === 'Control') { //если нажата клавиша вниз
       leftRacket.speedY += 3; // двигаем рокетки вниз
    }
 });
