@@ -212,28 +212,29 @@ ball.update();
 
 
 document.addEventListener('keydown', function (e) { // следим за нажатием клавиш
+   if (gameState !== 2) {
+      if (e.key === 'ArrowUp') { //если нажата клавиша вверх
+         rightRacket.speedY = -3;// двигаем рокетки вверх
+      }
+      if (e.key === 'Shift') { //если нажата клавиша вверх
+         leftRacket.speedY = -3;// двигаем рокетки вверх
+      }
 
-   if (e.key === 'ArrowUp') { //если нажата клавиша вверх
-      rightRacket.speedY = -3;// двигаем рокетки вверх
-   }
-   if (e.key === 'Shift') { //если нажата клавиша вверх
-      leftRacket.speedY = -3;// двигаем рокетки вверх
-   }
-
-   if (e.key === 'ArrowDown') { //если нажата клавиша вниз
-      rightRacket.speedY = 3; // двигаем рокетки вниз
-   }
-   if (e.key === 'Control') { //если нажата клавиша вниз
-      leftRacket.speedY = 3; // двигаем рокетки вниз
+      if (e.key === 'ArrowDown') { //если нажата клавиша вниз
+         rightRacket.speedY = 3; // двигаем рокетки вниз
+      }
+      if (e.key === 'Control') { //если нажата клавиша вниз
+         leftRacket.speedY = 3; // двигаем рокетки вниз
+      }
    }
 });
 
 document.addEventListener('keyup', function (e) { // следим за отжатием клавиш
    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') { //если это клавиши вверх и вниз
-      leftRacket.speedY = 0; // останавливаем  рокетку
+      rightRacket.speedY = 0; // останавливаем  рокетку
    }
    if (e.key === 'Shift' || e.key === 'Control') { //если это клавиши вверх и вниз
-      rightRacket.speedY = 0; // останавливаем  рокетку
+      leftRacket.speedY = 0; // останавливаем  рокетку
    }
 });
 
