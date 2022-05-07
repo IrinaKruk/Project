@@ -2,12 +2,17 @@
 
 class LocStorageClass {
 
-   constructor() {
+   constructor(_lsKeyName) {
+      this.lsKeyName = _lsKeyName;
       this.storage = {};
+      if (localStorage[_lsKeyName]) {
+         this.storage = JSON.parse(localStorage[_lsKeyName]);
+      }
    }
 
    addValue(key, value) {
       this.storage[key] = value;
+      localStorage[this.lsKeyName] = JSON.stringify(this.storage);
    }
 
    getValue(key) {
@@ -28,13 +33,8 @@ class LocStorageClass {
 
 }
 
-class drinkStorage extends LocStorageClass {
-   constructor() {
-      super();
-   }
-}
 
-let drink = new drinkStorage;
+let drink = new LocStorageClass("Напитки");
 
 let addDrinkButton = document.getElementById('add-coctail');
 addDrinkButton.onclick = function () {
@@ -72,13 +72,7 @@ allDrinkButton.onclick = function () {
    alert(allDrink);
 }
 
-class foodStorage extends LocStorageClass {
-   constructor() {
-      super();
-   }
-}
-
-let food = new foodStorage;
+let food = new LocStorageClass("Блюда");
 
 let addFoodButton = document.getElementById('add-food');
 addFoodButton.onclick = function () {
