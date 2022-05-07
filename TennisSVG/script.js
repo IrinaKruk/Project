@@ -166,6 +166,7 @@ function tick() {
       console.log(rightGameScores);
    }
 
+
    // вылетел ли мяч левее стены?
    if ((ball.posX - ball.width / 2) < 0) {
       ball.speedX = 0;
