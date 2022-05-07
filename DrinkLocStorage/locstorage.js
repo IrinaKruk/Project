@@ -22,6 +22,7 @@ class LocStorageClass {
    deleteValue(key) {
       if (key in this.storage) {
          delete this.storage[key];
+         localStorage[this.lsKeyName] = JSON.stringify(this.storage);
          return true;
       }
       return false;
