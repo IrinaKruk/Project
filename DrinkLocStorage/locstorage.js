@@ -42,8 +42,6 @@ addDrinkButton.onclick = function () {
    let r = prompt("Рецепт");
    let a = confirm("Алкогольный или нет?");
    drink.addValue(name, { recipe: r, alko: a });
-   console.log(drink);
-   localStorage.setItem('Напитки', JSON.stringify(drink));
 }
 
 let getDrinkButton = document.getElementById('get-coctail');
@@ -88,9 +86,6 @@ addFoodButton.onclick = function () {
    let r = prompt("Рецепт");
    let a = confirm("Диетическое или нет?");
    food.addValue(name, { recipe: r, diet: a });
-   console.log(food);
-   localStorage.setItem('Блюда', JSON.stringify(food));
-
 }
 
 let getFoodButton = document.getElementById('get-food');
